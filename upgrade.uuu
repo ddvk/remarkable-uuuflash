@@ -1,0 +1,23 @@
+uuu_version 1.0.1
+
+SDP: write -f zImage-uuu -addr 0x82000000 
+SDP: write -f initramfs.cpio.gz.uboot -addr 0x89000000
+SDP: write -f zero-gravitas.dtb -addr 0x88000000
+SDP: boot -f u-boot-linuxrc.imx
+
+
+FBK: ucmd ls /dev/mmc*
+FBK: ucmd touch /exit
+FBK: done
+
+# overwriting the root partitions
+FBK: acmd gunzip > /dev/mmcblk1p2
+FBK: ucp files/2113.gz t:-
+FBK: sync
+
+FBK: acmd gunzip > /dev/mmcblk1p3
+FBK: ucp files/2113.gz t:-
+FBK: sync
+
+FBK: done
+

@@ -1,0 +1,7 @@
+uuu_version 1.0.1
+
+SDP: write -f zImage-recover -addr 0x82000000 
+SDP: write -f initramfs.cpio.gz.uboot -addr 0x89000000
+SDP: write -f zero-gravitas.dtb -addr 0x88000000
+SDP: boot -f u-boot-init.imx
+SDP: done

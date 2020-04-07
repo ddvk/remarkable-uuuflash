@@ -1,0 +1,8 @@
+uuu_version 1.3.154
+FBK: ucmd ls
+
+FBK: ucmd cd /
+FBK: ucmd ls
+FBK: ucmd pwd
+
+FBK: ucmd ls t:/
