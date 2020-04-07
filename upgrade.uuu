@@ -7,8 +7,6 @@ SDP: boot -f u-boot-linuxrc.imx
 
 
 FBK: ucmd ls /dev/mmc*
-FBK: ucmd touch /exit
-FBK: done
 
 # overwriting the root partitions
 FBK: acmd gunzip > /dev/mmcblk1p2
