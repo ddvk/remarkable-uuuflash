@@ -54,7 +54,7 @@ cdc_acm 1-1.3:1.2: ttyACM0: USB ACM device
 ```
 Note that the name of the serial device might differ from distro to distro. Try again, with the correct name, if no device is shown under dmesg. Something might have gone wrong. In that case please report your problems. Please be aware that the access to the serial device might require root rights, depending on your system. 
 
-## Macos
+## macOS
 Probably need to install zlib and libusb with brew:
 ```
 brew install libzip
