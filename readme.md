@@ -37,7 +37,7 @@ To boot into recovery use:
 ./uuu recover.uuu 
 ```
 After the loading of the recovery image you should be able to login via a serial client
-On Linux you can use
+## Linux
 ```bash
 minicom -D /dev/ttyACM0
 ```
@@ -46,12 +46,25 @@ or
 screen /dev/ttyACM0
 ```
 Please notice, that the name of the device might be different depending on your system. 
-On Windows you can use `putty` to establish a serial connection
+## Windows
+You can use `putty` to establish a serial connection
 If this does not work, check with `dmesg` the current status, there should be a line like:
 ```bash
 cdc_acm 1-1.3:1.2: ttyACM0: USB ACM device
 ```
 Note that the name of the serial device might differ from distro to distro. Try again, with the correct name, if no device is shown under dmesg. Something might have gone wrong. In that case please report your problems. Please be aware that the access to the serial device might require root rights, depending on your system. 
+
+## Macos
+Probably need to install zlib and libusb with brew:
+```
+brew install libzip
+brew install libusb
+```
+then start:
+```
+./uuu-mac ./recover.uuu
+screen /dev/tty.usbmodem1A1103
+```
 
 A login prompt will appear:
 ```bash 
@@ -94,7 +107,7 @@ Use
 To be documented in detail
 
 ### Sources
-- remarkable / imx_usb_tool (initramfs)
-- uuu tool
-- uboot (modified to ignore env variables)
-- zImages-fsl
+- remarkable / imx_usb_tool (initramfs) [https://github.com/reMarkable/imx_usb_loader]
+- uuu [https://github.com/NXPmicro/mfgtools]
+- uboot (modified to ignore env variables) [to be pushed]
+- zImages-fsl [SCR-4.14.98_2.0.0_ga.txt]
