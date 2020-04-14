@@ -46,13 +46,15 @@ or
 screen /dev/ttyACM0
 ```
 Please notice, that the name of the device might be different depending on your system. 
-## Windows
-You can use `putty` to establish a serial connection
 If this does not work, check with `dmesg` the current status, there should be a line like:
 ```bash
 cdc_acm 1-1.3:1.2: ttyACM0: USB ACM device
 ```
 Note that the name of the serial device might differ from distro to distro. Try again, with the correct name, if no device is shown under dmesg. Something might have gone wrong. In that case please report your problems. Please be aware that the access to the serial device might require root rights, depending on your system. 
+
+## Windows (not yet fully tested, may need additional drivers)
+You can use `putty` to establish a serial connection. Check the `Device Manager` for unknown usb devices and/or `Event Viewer`
+
 
 ## macOS
 Probably need to install zlib and libusb with brew:
