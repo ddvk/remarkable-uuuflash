@@ -55,6 +55,20 @@ Note that the name of the serial device might differ from distro to distro. Try 
 ## Windows (not yet fully tested, may need additional drivers)
 You can use `putty` to establish a serial connection. Check the `Device Manager` for unknown usb devices and/or `Event Viewer`
 
+If your device is recognized as a "CDC Composite Gadget", use the following steps to allow Windows to communitcate with it over serial:
+
+1. Open device manager.  
+2. Right click "CDC Composite Gadget"
+3. Click "Properties"
+4. Go to the "Driver" tab
+5. Click "Update Driver"
+6. "Browse my computer for driver software"
+7. "Let me pick from a list..."
+8. Select "Ports (COM & LPT)"
+8. Select "Microsoft" from the Manufacturer list
+9. Select "USB Serial Device" from the Model list
+10. Click "Next" and allow the driver to install
+
 
 ## macOS
 Probably need to install zlib and libusb with brew:
