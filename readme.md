@@ -55,7 +55,7 @@ Note that the name of the serial device might differ from distro to distro. Try 
 ## Windows (not yet fully tested, may need additional drivers)
 You can use `putty` to establish a serial connection. Check the `Device Manager` for unknown usb devices and/or `Event Viewer`
 
-If your device is recognized as a "CDC Composite Gadget", use the following steps to allow Windows to communitcate with it over serial:
+If your device is recognized as a "CDC Composite Gadget", use the following steps to allow Windows to communicate with it over serial:
 
 1. Open device manager.  
 2. Right click "CDC Composite Gadget"
