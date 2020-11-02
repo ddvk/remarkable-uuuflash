@@ -1,3 +1,6 @@
+
+[![Discord](https://img.shields.io/discord/463752820026376202.svg?label=reMarkable&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/ATqQGfu)
+
 # Remarkable tablet system tools 
 Please be aware that you can potentially break your remarkable tablet. Even if unlikely even bricking it behind repair.
 Nobody is responsible for the actions you are taking with this scripts.
