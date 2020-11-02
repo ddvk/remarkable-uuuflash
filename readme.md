@@ -116,14 +116,16 @@ Use
 ```bash
 ./uuu upgrade.uuu
 ```
-To be documented in detail
+This will overwrite both root partitions with the version 2.1.1.3, use if you really cannot fix it yourself.
 
 ### Reflash ()
 Use
 ```bash
 ./uuu reflash.uuu
 ```
-To be documented in detail
+This will try to repartition the device aka (mfgtools), thus deleting home and everyting.  
+It has not been fully tested
+**USE IF NOTHING ELSE HELPS**
 
 ### Sources
 - remarkable / imx_usb_tool (initramfs) [https://github.com/reMarkable/imx_usb_loader]
