@@ -7,23 +7,18 @@ SDP: boot -f u-boot-linuxrc.imx
 
 FBK: ucmd ls /dev/mmc*
 
-FBK: done
-# WIP
-#FBK: ucp u-boot.imx t:/tmp
-#FBK: ucmd displayimage /usr/share/misc/startingflash.png
-#FBK: done
-
 # overwrite bootloader (disabled)
-#FBK: ucmd dd if=/dev/zero of=/dev/mmcblk1 bs=512 seek=1536 count=16
-#FBK: ucmd echo 0 > /sys/block/mmcblk1boot0/force_ro
-#FBK: ucmd dd if=/dev/zero of=/dev/mmcblk1boot0 bs=512 count=2
+FBK: ucmd dd if=/dev/zero of=/dev/mmcblk1 bs=512 seek=1536 count=16
 
-#FBK: ucp files/u-boot.imx t:/tmp
+FBK: ucmd echo 0 > /sys/block/mmcblk1boot0/force_ro
+FBK: ucmd dd if=/dev/zero of=/dev/mmcblk1boot0 bs=512 count=2
 
-#FBK: ucmd dd if=/tmp/u-boot.imx of=/dev/mmcblk1boot0 bs=512 seek=2
-#FBK: ucmd echo 1 > /sys/block/mmcblk1boot0/force_ro
+FBK: ucp files/u-boot.imx t:/tmp
 
-#setting boot partition (disabled, fuses blown)
+FBK: ucmd dd if=/tmp/u-boot.imx of=/dev/mmcblk1boot0 bs=512 seek=2
+FBK: ucmd echo 1 > /sys/block/mmcblk1boot0/force_ro
+
+# setting boot partition (disabled, fuses blown)
 #FBK: ucmd echo 8 > /sys/devices/soc0/soc/2100000.aips-bus/2194000.usdhc/mmc_host/mmc1/mmc1:0001/boot_config
 
 
@@ -33,6 +28,7 @@ FBK: done
 #FBK: ucmd /tmp/flash-latest.sh
 #FBK: ucmd ./wacom_flash W9013_0734.hex 0 i2c-1 
 
+# repartition
 FBK: ucp files/partition.sh t:/tmp
 FBK: ucmd sh /tmp/partition.sh /dev/mmcblk1
 FBK: ucmd mkfs.vfat /dev/mmcblk1p1
@@ -48,33 +44,39 @@ FBK: ucp files/lowbattery.bmp t:/tmp
 FBK: ucmd cp /tmp/lowbattery.bmp /mnt/mmcblk1p1/lowbattery.bmp
 FBK: ucmd umount /mnt/mmcblk1p1
 
+# root
+FBK: acmd gunzip > /dev/mmcblk1p2
+FBK: ucp files/2113.gz t:-
 
-FBK: ucmd mkfs.ext4 -L rootA -F /dev/mmcblk1p2
-FBK: ucmd mkdir -p /mnt/mmcblk1p2
-FBK: ucmd mount -t ext4 /dev/mmcblk1p2 /mnt/mmcblk1p2
+FBK: acmd gunzip > /dev/mmcblk1p3
+FBK: ucp files/2113.gz t:-
 
-FBK: acmd tar -zxv -C /mnt/mmcblk1p2
-FBK: ucp files/rootfs.tar.gz t:-
-FBK: sync
-FBK: ucmd umount /mnt/mmcblk1p2
+#FBK: ucmd mkfs.ext4 -L rootA -F /dev/mmcblk1p2
+#FBK: ucmd mkdir -p /mnt/mmcblk1p2
+#FBK: ucmd mount -t ext4 /dev/mmcblk1p2 /mnt/mmcblk1p2
 
-FBK: ucmd mkfs.ext4 -L rootB -F /dev/mmcblk1p3
-FBK: ucmd mkdir -p /mnt/mmcblk1p3
-FBK: ucmd mount -t ext4 /dev/mmcblk1p3 /mnt/mmcblk1p3
+#FBK: acmd tar -zxv -C /mnt/mmcblk1p2
+#FBK: ucp files/rootfs.tar.gz t:-
+#FBK: sync
+#FBK: ucmd umount /mnt/mmcblk1p2
 
-FBK: acmd tar -zxv -C /mnt/mmcblk1p3
-FBK: ucp files/rootfs.tar.gz t:-
-FBK: sync
-FBK: ucmd umount /mnt/mmcblk1p3
+#FBK: ucmd mkfs.ext4 -L rootB -F /dev/mmcblk1p3
+#FBK: ucmd mkdir -p /mnt/mmcblk1p3
+#FBK: ucmd mount -t ext4 /dev/mmcblk1p3 /mnt/mmcblk1p3
 
+#FBK: acmd tar -zxv -C /mnt/mmcblk1p3
+#FBK: ucp files/rootfs.tar.gz t:-
+#FBK: sync
+#FBK: ucmd umount /mnt/mmcblk1p3
+
+# home 
 FBK: ucmd mkfs.ext4 -F -L home /dev/mmcblk1p7
 FBK: ucmd mkdir -p /mnt/mmcblk1p7
 FBK: ucmd mount /dev/mmcblk1p7 /mnt/mmcblk1p7
 
 FBK: acmd tar -zxv -C /mnt/mmcblk1p7
-FBK: ucp files/home.tar.gz t:-
+FBK: ucp files/home.tgz t:-
 FBK: sync
 FBK: ucmd umount /mnt/mmcblk1p7
 
-#FBK: ucmd displayimage /usr/share/misc/finishflash.png
-
+FBK: done

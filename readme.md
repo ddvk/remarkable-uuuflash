@@ -120,14 +120,14 @@ Use
 ```
 This will overwrite both root partitions with the version 2.1.1.3, use if you really cannot fix it yourself.
 
-### Reflash ()
+### Reflash  (if nothing else helps)
+** This will delete all your files, use as last resort **
+
 Use
 ```bash
 ./uuu reflash.uuu
 ```
-This will try to repartition the device aka (mfgtools), thus deleting home and everyting.  
-It has not been fully tested
-**USE IF NOTHING ELSE HELPS**
+This will rewrite the bootloader, repartition the device aka (mfgtools), thus deleting home and everyting.
 
 ### Sources
 - remarkable / imx_usb_tool (initramfs) [https://github.com/reMarkable/imx_usb_loader]
