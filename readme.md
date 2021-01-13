@@ -58,9 +58,9 @@ cdc_acm 1-1.3:1.2: ttyACM0: USB ACM device
 Note that the name of the serial device might differ from distro to distro. Try again, with the correct name, if no device is shown under dmesg. Something might have gone wrong. In that case please report your problems. Please be aware that the access to the serial device might require root rights, depending on your system. 
 
 ## Windows (not yet fully tested, may need additional drivers)
-You can use `putty` to establish a serial connection. Check the `Device Manager` for unknown usb devices and/or `Event Viewer`
+You can use `putty` to establish a serial connection to the COM device it's listed as (Example: COM3). Check the `Device Manager` for unknown usb devices and/or `Event Viewer`
 
-If your device is recognized as a "CDC Composite Gadget", use the following steps to allow Windows to communicate with it over serial:
+If your device is recognized as a "CDC Composite Gadget" after running `uuu.exe recover.uuu`, use the following steps to allow Windows to communicate with it over serial:
 
 1. Open device manager.  
 2. Right click "CDC Composite Gadget"
