@@ -76,11 +76,31 @@ If your device is recognized as a "CDC Composite Gadget" after running `uuu.exe 
 
 
 ## macOS
-Probably need to install zlib and libusb with brew:
+
+### Option 1: install uuu via homebrew
+
+For ARM and Intel based Macs you can install the necessary uuu utility via Homebrew
+```
+brew install uuu
+```
+
+### Option 2: Use uuu-mac provided in this repo
+
+Included in this repo is the "uuu-mac" compiled for x86. Intel-based Macs can run this utility directly but you *also* need libzip and libusb.
+
+ARM Macs can (theoretically) run this version of the utility under Rosetta. However it is dependent on libzip and libusb and attempts to look for them in x86-specific directories. If you attempt to run it and see an error such as below you will need to use Option 1 or find and install those libraries manually
+```
+$ ./uuu-mac
+dyld[79392]: Library not loaded: /usr/local/opt/libusb/lib/libusb-1.0.0.dylib
+...
+```
+
+On Intel Macs you can install zlib and libusb via Homebrew:
 ```
 brew install libzip
 brew install libusb
 ```
+
 then start:
 ```
 ./uuu-mac ./recover.uuu
