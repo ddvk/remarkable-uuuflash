@@ -118,15 +118,32 @@ To login use `root` as user.
 The entire visible system is the initramfs within the rM RAM. Thus, the flash memory partitions of the real system have to be mounted, if you want to access it.
 * Mount the internal flash memory partitions
 ```bash 
-mount /dev/mmcblk1p2 /mnt/
+mount /dev/mmcblk1p2 /mnt/ # This may need to be mmcblk1p3 if you are using the other root partition
 mount /dev/mmcblk1p7 /mnt/home
 mount /dev/mmcblk1p1 /mnt/var/lib/uboot
+mount -t proc /proc /mnt/proc
+mount --rbind /sys /mnt/sys
+mount --rbind /dev /mnt/dev
+mount --rbind /run /mnt/run
 ```
 * For convince, one can chroot into the real system.
 ```bash 
 chroot /mnt
 ```
-* You can now change settings or reset passwords, etc. After you finished, type 
+* If you use toltec you will need to run the following to get access to anything that toltec has installed
+```bash
+mount -o bind /home/root/.entware /opt
+source /home/root/.bashrc
+# You may wish to mount any other bind mounts that toltec has setup
+```
+* You can now change settings or reset passwords, etc.
+* If you need SSH access you can run the following:
+```bash
+/usr/sbin/udhcpd /etc/udhcpd.usb0.conf
+ip addr add 10.11.99.1 dev usb0
+/usr/sbin/dropbear -r /etc/dropbear/dropbear_ed25519_host_key -B
+```
+* After you have finished, type 
 ```bash 
 exit #if you used the chroot
 reboot
